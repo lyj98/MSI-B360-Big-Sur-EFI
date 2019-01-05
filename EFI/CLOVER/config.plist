@@ -109,15 +109,6 @@
 			<key>SuspendOverride</key>
 			<false/>
 		</dict>
-		<key>DropTables</key>
-		<array>
-			<dict>
-				<key>Signature</key>
-				<string>SSDT</string>
-				<key>TableId</key>
-				<string>UIAC-ALL</string>
-			</dict>
-		</array>
 		<key>FixHeaders</key>
 		<false/>
 		<key>HaltEnabler</key>
@@ -298,7 +289,7 @@
 				<key>Comment</key>
 				<string>USB Port limit patch 10.14.1 10.14.2 Beta by DalianSky</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>
 				g/sPD4OPBAAA
