@@ -1,7 +1,7 @@
 # MSI-b360-10.14.2-EFI
 Hackintosh EFI FILE
 
-Update 2018/12/29
+Update 2019/01/05
 
 CPU:i5 8400
 GPU:UHD630
@@ -17,7 +17,7 @@ Clover version:4813
 
 WhateverGreen 1.2.6
 
-USB3.0 5G add DSDT
+USBPorts USB3.0 5G
 
 HibernationFixup 1.2.4
 
