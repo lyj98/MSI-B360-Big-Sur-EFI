@@ -1,3 +1,18 @@
+#!/bin/bash
+
+# get release tag
+NVMeFix_TAG=$(wget -qO- https://git.io/Acidanthera-tags | grep 'NVMeFix' | cut -d= -f2-)
+IntelMausi_TAG=$(wget -qO- https://git.io/Acidanthera-tags | grep 'IntelMausi' | cut -d= -f2-)
+VirtualSMC_TAG=$(wget -qO- https://git.io/Acidanthera-tags | grep 'VirtualSMC' | cut -d= -f2-)
+Lilu_TAG=$(wget -qO- https://git.io/Acidanthera-tags | grep 'Lilu' | cut -d= -f2-)
+WhateverGreen_TAG=$(wget -qO- https://git.io/Acidanthera-tags | grep 'WhateverGreen' | cut -d= -f2-)
+OpenCorePkg_TAG=$(wget -qO- https://git.io/Acidanthera-tags | grep 'OpenCorePkg' | cut -d= -f2-)
+AppleALC_TAG=$(wget -qO- https://git.io/Acidanthera-tags | grep 'AppleALC' | cut -d= -f2-)
+
+ReleaseTag=$(cat ReleaseTag | head -n1)
+
+# generate README.md
+cat > README.md << EOF
 
 ## Requires macOS 10.14+. Works with Catalina and Big Sur. It's Free and Open Source.  
 
@@ -25,24 +40,24 @@ https://sleele.com/2019/10/31/opencore-guide/
 
 | SMBIOS        | Platform        | download link | 
 | ------------- | --------------- |  ------------ | 
-| Macmini8,1    | ONLY IGPU       | https://github.com/SuperNG6/MSI-B360-Big-Sur-EFI/releases/download/11.5.2/ONLY.IGPU.Macmini8.1.zip | 
-| iMac19,1      | AMD 5500XT+IGPU | https://github.com/SuperNG6/MSI-B360-Big-Sur-EFI/releases/download/11.5.2/AMD.5500XT+IGPU.iMac19.1.zip | 
-| iMac19,1      | AMD 5700XT+IGPU | https://github.com/SuperNG6/MSI-B360-Big-Sur-EFI/releases/download/11.5.2/AMD.5700XT+IGPU.iMac19.1.zip | 
-| iMac19,1      | AMD GPU+IGPU    | https://github.com/SuperNG6/MSI-B360-Big-Sur-EFI/releases/download/11.5.2/AMD.GPU+IGPU.iMac19.1.zip | 
-| iMacPro1,1    | ONLY AMD GPU    | https://github.com/SuperNG6/MSI-B360-Big-Sur-EFI/releases/download/11.5.2/ONLY.AMD.GPU.iMacPro1.1.zip | 
+| Macmini8,1    | ONLY IGPU       | https://github.com/SuperNG6/MSI-B360-Big-Sur-EFI/releases/download/${ReleaseTag}/ONLY.IGPU.Macmini8.1.zip | 
+| iMac19,1      | AMD 5500XT+IGPU | https://github.com/SuperNG6/MSI-B360-Big-Sur-EFI/releases/download/${ReleaseTag}/AMD.5500XT+IGPU.iMac19.1.zip | 
+| iMac19,1      | AMD 5700XT+IGPU | https://github.com/SuperNG6/MSI-B360-Big-Sur-EFI/releases/download/${ReleaseTag}/AMD.5700XT+IGPU.iMac19.1.zip | 
+| iMac19,1      | AMD GPU+IGPU    | https://github.com/SuperNG6/MSI-B360-Big-Sur-EFI/releases/download/${ReleaseTag}/AMD.GPU+IGPU.iMac19.1.zip | 
+| iMacPro1,1    | ONLY AMD GPU    | https://github.com/SuperNG6/MSI-B360-Big-Sur-EFI/releases/download/${ReleaseTag}/ONLY.AMD.GPU.iMacPro1.1.zip | 
 
 ### Acidanthera & Hackintosh Tools  
 https://github.com/SuperNG6/Acidanthera-Hackintosh-Tools  
 
 | Components    | Version               |
 | ------------- | --------------------- |
-| OpenCorePkg   | 0.7.3    | 
-| AppleALC      | 1.6.4       |
-| IntelMausi    | 1.0.7     |
-| Lilu          | 1.5.6           |
-| VirtualSMC    | 1.2.7     |
-| WhateverGreen | 1.5.3  |
-| NVMeFix       | 1.0.9        |
+| OpenCorePkg   | ${OpenCorePkg_TAG}    | 
+| AppleALC      | ${AppleALC_TAG}       |
+| IntelMausi    | ${IntelMausi_TAG}     |
+| Lilu          | ${Lilu_TAG}           |
+| VirtualSMC    | ${VirtualSMC_TAG}     |
+| WhateverGreen | ${WhateverGreen_TAG}  |
+| NVMeFix       | ${NVMeFix_TAG}        |
     
 
 ## Changelog
@@ -94,7 +109,7 @@ https://github.com/SuperNG6/Acidanthera-Hackintosh-Tools
 
     1、update OpenCorePkg & Kexts to the latest
     2、support macOS Big Sur 11.1
-    3、remove  boot argument,added  boot argument to enable RPS control patch (improves IGPU performance)
+    3、remove `igfxfw=2` boot argument,added `igfxrpsc=1` boot argument to enable RPS control patch (improves IGPU performance)
 
 ### 2020/11/14
 
@@ -156,7 +171,7 @@ https://github.com/SuperNG6/Acidanthera-Hackintosh-Tools
     
 ## If you used to apply simulation nvaram，please operate in the following way.  
 ### Clover  
-
+````
 delete these files
 /Volumes/EFI/nvram.plist
 /etc/rc.clover.lib
@@ -166,13 +181,13 @@ delete these files
 /etc/rc.boot.d/80.save_nvram_plist.local
 /etc/rc.boot.d
 /etc/rc.shutdown.d
-
+````
 
 ### OpenCore  
-
-sudo rm -rf 
+````
+sudo rm -rf $(sudo defaults read com.apple.loginwindow LogoutHook)
 sudo defaults delete com.apple.loginwindow LogoutHook
-
+````
 
 
 ### 2020/01/15
@@ -262,3 +277,4 @@ Link of tutorial：https://sleele.com/2019/05/05/hackintosh-pcidevices/
 ![vNLdMd](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/vNLdMd.png)
 ![aIzBBu](https://cdn.jsdelivr.net/gh/SuperNG6/pic@master/uPic/aIzBBu.png)
 
+EOF
