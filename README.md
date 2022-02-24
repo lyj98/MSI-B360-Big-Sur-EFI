@@ -36,12 +36,12 @@ https://github.com/SuperNG6/Acidanthera-Hackintosh-Tools
 
 | Components    | Version               |
 | ------------- | --------------------- |
-| OpenCorePkg   | 0.7.7    | 
-| AppleALC      | 1.6.8       |
+| OpenCorePkg   | 0.7.8    | 
+| AppleALC      | 1.6.9       |
 | IntelMausi    | 1.0.7     |
-| Lilu          | 1.5.9           |
+| Lilu          | 1.6.0           |
 | VirtualSMC    | 1.2.8     |
-| WhateverGreen | 1.5.6  |
+| WhateverGreen | 1.5.7  |
 | NVMeFix       | 1.0.9        |
     
 
